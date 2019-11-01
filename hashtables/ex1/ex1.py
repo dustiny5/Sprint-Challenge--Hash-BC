@@ -12,6 +12,25 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
+    for index in range(length):
+        hash_table_insert(ht, weights[index], index)
+
+    if length < 2:
+        return None
+    elif length == 2:
+        for lp in ht.storage:
+            if lp:
+                low = min(lp.next.value, lp.value)
+                high = max(lp.next.value, lp.value)
+                return (high, low)
+                
+
+    for weight in weights:
+        weight_2 = limit - weight
+        if weight_2 in weights and weight_2 > weight:
+            return (hash_table_retrieve(ht, weight_2), hash_table_retrieve(ht, weight))
+        elif weight_2 in weights and weight_2 < weight:
+            return (hash_table_retrieve(ht, weight_2), hash_table_retrieve(ht, weight))
 
     return None
 

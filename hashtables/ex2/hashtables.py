@@ -41,6 +41,11 @@ def hash_table_insert(hash_table, key, value):
     current_pair = hash_table.storage[index]
     last_pair = None
 
+    if current_pair:
+        other_pair = LinkedPair(key, value)
+        current_pair.next = other_pair
+        return
+
     while current_pair is not None and current_pair.key != key:
         last_pair = current_pair
         current_pair = last_pair.next
